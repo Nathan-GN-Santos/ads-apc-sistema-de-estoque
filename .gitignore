@@ -1,0 +1,12 @@
+# Arquivos de compilação do C / Visual Studio
+*.exe
+*.obj
+*.ilk
+*.pdb
+*.idb
+
+# Arquivos temporários de editores 
+~$*
+.DS_Store
+Thumbs.db
+.vscode/
