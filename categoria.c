@@ -37,7 +37,7 @@ int cadastrarCategoria(Categoria lista[], int total) {
     Categoria cat;
     printf("\n--- CADASTRO DE CATEGORIA ---\n");
 
-    // ValidaÃƒÂ§ÃƒÂ£o do CÃƒÂ³digo da Categoria
+    // Validação do Código da Categoria
     do {
         cat.codigo = lerInteiro("Digite o Codigo da categoria (inteiro positivo): ");
         if (!ehPositivoInt(cat.codigo)) {
@@ -47,7 +47,7 @@ int cadastrarCategoria(Categoria lista[], int total) {
         }
     } while (!ehPositivoInt(cat.codigo) || buscarCategoriaPorCodigo(lista, total, cat.codigo) != -1);
 
-    // ValidaÃ§Ã£o do Nome usando lerTexto e textoPreenchido
+    // Validação do Nome usando lerTexto e textoPreenchido
     do {
         lerTexto("Digite o Nome da categoria: ", cat.nome, sizeof(cat.nome));
         if (!textoPreenchido(cat.nome)) {
@@ -74,7 +74,7 @@ void listarCategorias(Categoria lista[], int total) {
     }
 }
 
-// PersistÃƒÂªncia: Salvar categorias em arquivo de texto
+// Persistência de salvar categorias em arquivo de texto
 void salvarCategoriasArquivo(Categoria lista[], int total) {
     FILE *file = fopen("categorias.txt", "w");
     if (file == NULL) {
@@ -87,7 +87,7 @@ void salvarCategoriasArquivo(Categoria lista[], int total) {
     fclose(file);
 }
 
-// PersistÃªncia: Carregar categorias do arquivo de texto
+//  Carregar categorias do arquivo de texto
 int carregarCategoriasArquivo(Categoria lista[]) {
     FILE *file = fopen("categorias.txt", "r");
     if (file == NULL) return 0;

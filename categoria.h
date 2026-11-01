@@ -3,14 +3,14 @@
 
 
 
-#define CAPACIDADE_CATEGORIAS 20 // Capacidade mÃ¡xima de categorias
+#define CAPACIDADE_CATEGORIAS 20 // Capacidade mÃƒÂ¡xima de categorias
 
 typedef struct {
     int codigo;
     char nome[30];
 } Categoria;
 
-// FunÃ§Ãµes de Categoria
+// Funções de Categoria
 void exibirCategoria(Categoria cat);
 int buscarCategoriaPorCodigo(Categoria lista[], int total, int codigo);
 int buscarCategoriaPorNome(Categoria lista[], int total, const char *nome);

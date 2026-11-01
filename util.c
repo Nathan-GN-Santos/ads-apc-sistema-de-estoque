@@ -12,7 +12,7 @@ int lerInteiro(const char *mensagem) {
     int valor, r;
     printf("%s", mensagem);
     while ((r = scanf("%d", &valor)) != 1) {
-        if (r == EOF) exit(1);          // entrada fechada: evita laço infinito
+        if (r == EOF) exit(1);          
         limparBuffer();
         printf("[ERRO] Digite um numero inteiro valido.\n%s", mensagem);
     }
@@ -31,6 +31,8 @@ float lerFloat(const char *mensagem) {
     }
     limparBuffer();
     return valor;
+    
+    
 }
 
 char lerCaractere(const char *mensagem) {
@@ -43,6 +45,7 @@ char lerCaractere(const char *mensagem) {
 
 void lerTexto(const char *mensagem, char *destino, int tamanho) {
     printf("%s", mensagem);
+    
     if (fgets(destino, tamanho, stdin) == NULL) {
         destino[0] = '\0';
         return;
@@ -51,8 +54,10 @@ void lerTexto(const char *mensagem, char *destino, int tamanho) {
     if (destino[pos] == '\n') {
         destino[pos] = '\0';
     } else {
-        limparBuffer();   // texto maior que o buffer: descarta o excedente
+        limparBuffer();   
     }
+    
+    
 }
 
 int ehPositivoInt(int valor)     { return valor > 0; }

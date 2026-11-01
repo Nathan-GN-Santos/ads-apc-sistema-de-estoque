@@ -9,72 +9,72 @@
 //Especificadores:
 // %d = inteiro decimal
 
-//CÓDIGO
+//CÓDIGO 11
 #include <stdio.h>
 #include "produto.h"
 #include "categoria.h"
 #include "util.h"
 
-int main() {
-    // Configura a saída e entrada do console do Windows para a página de código UTF-8 (65001)
-    //SetConsoleOutputCP(65001);
-    //SetConsoleCP(65001);
-
+int main(void) {
     int opcao = 0;
     int opcaoCat = 0;
 
     Categoria listaCategorias[CAPACIDADE_CATEGORIAS];
     int totalCategorias = 0;
 
-    Produto listaProdutos[CAPACIDADE]; // Vetor com capacidade para 50 produtos
-    int totalProdutos = 0;             // Contador de produtos cadastrados
+    Produto listaProdutos[CAPACIDADE];
+    int totalProdutos = 0;
 
-    // Carregar dados salvos nos arquivos ao iniciar o programa (Requisito da Tarefa 4)
     totalCategorias = carregarCategoriasArquivo(listaCategorias);
     totalProdutos = carregarProdutosArquivo(listaProdutos);
 
     do {
-        // Exibição do Menu Principal conforme exigido na Tarefa 4
         printf("\n====================================\n");
         printf("       SISTEMA DE ESTOQUE - MENU    \n");
         printf("====================================\n");
         printf("1 - Cadastrar Produto\n");
         printf("2 - Listar Produtos\n");
         printf("3 - Pesquisar Produto\n");
-        printf("4 - Categorias\n");
-        printf("5 - Sair\n");
+        printf("4 - Alterar Estoque de um Produto\n");
+        printf("5 - Remover Produto\n");
+        printf("6 - Categorias\n");
+        printf("7 - Sair\n");
         opcao = lerInteiro("Escolha uma opcao: ");
 
         switch (opcao) {
             case 1:
-               	totalProdutos = cadastrarProduto(listaProdutos, totalProdutos, listaCategorias, totalCategorias);
-    			salvarProdutosArquivo(listaProdutos, totalProdutos);
-   				 break;
-
+                totalProdutos = cadastrarProduto(listaProdutos, totalProdutos, listaCategorias, totalCategorias);
+                salvarProdutosArquivo(listaProdutos, totalProdutos);
+                break;
             case 2:
                 listarProdutos(listaProdutos, totalProdutos, listaCategorias, totalCategorias);
                 break;
-
             case 3:
                 pesquisarProduto(listaProdutos, totalProdutos, listaCategorias, totalCategorias);
                 break;
-
             case 4:
-                // Submenu de Categorias (Requisito da Tarefa 4)
+                alterarEstoque(listaProdutos, totalProdutos, listaCategorias, totalCategorias);
+                salvarProdutosArquivo(listaProdutos, totalProdutos);
+                break;
+            case 5:
+                removerProduto(listaProdutos, totalProdutos);
+                salvarProdutosArquivo(listaProdutos, totalProdutos);
+                break;
+            case 6:
                 do {
                     printf("\n------------------------------------\n");
                     printf("       SUBMENU - CATEGORIAS         \n");
                     printf("------------------------------------\n");
                     printf("1 - Cadastrar Categoria\n");
-                    printf("2 - Listar Categoria\n");
+                    printf("2 - Listar Categorias\n");
                     printf("3 - Voltar\n");
-                  	opcaoCat = lerInteiro("Escolha uma opcao: ");
+                    opcaoCat = lerInteiro("Escolha uma opcao: ");
 
                     switch (opcaoCat) {
-                        case 1: // dentro do submenu
-    						totalCategorias = cadastrarCategoria(listaCategorias, totalCategorias);
-    						salvarCategoriasArquivo(listaCategorias, totalCategorias);
-    						break;
+                        case 1:
+                            totalCategorias = cadastrarCategoria(listaCategorias, totalCategorias);
+                            salvarCategoriasArquivo(listaCategorias, totalCategorias);
+                            break;
                         case 2:
                             listarCategorias(listaCategorias, totalCategorias);
                             break;
@@ -87,19 +87,16 @@ int main() {
                     }
                 } while (opcaoCat != 3);
                 break;
-
-            case 5:
+            case 7:
                 salvarCategoriasArquivo(listaCategorias, totalCategorias);
                 salvarProdutosArquivo(listaProdutos, totalProdutos);
                 printf("\nDados salvos com sucesso. Saindo do sistema...\n");
                 break;
-
             default:
-                printf("\n[ERRO] Opcao invalida! Escolha entre 1 e 5.\n");
+                printf("\n[ERRO] Opcao invalida! Escolha entre 1 e 7.\n");
                 break;
         }
-
-    } while (opcao != 5);
+    } while (opcao != 7);
 
     return 0;
 }

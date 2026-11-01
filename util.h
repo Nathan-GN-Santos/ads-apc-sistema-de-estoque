@@ -3,7 +3,7 @@
 
 void limparBuffer(void);
 
-// Repetem até o usuário digitar algo do tipo certo
+// Repetem se o usuário digitar algo do tipo certo
 int   lerInteiro(const char *mensagem);
 float lerFloat(const char *mensagem);
 char  lerCaractere(const char *mensagem);

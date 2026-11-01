@@ -13,6 +13,7 @@ typedef struct {
     int quantidade;
     int disponivel;
     int codigoCategoria;
+    int ativo;              // 1 e 0
 } Produto;
 
 void exibirProduto(Produto prod, Categoria categorias[], int totalCat);
@@ -23,5 +24,6 @@ void listarProdutos(Produto lista[], int total, Categoria categorias[], int tota
 void pesquisarProduto(Produto lista[], int total, Categoria categorias[], int totalCat);
 void salvarProdutosArquivo(Produto lista[], int total);
 int carregarProdutosArquivo(Produto lista[]);
-
+void alterarEstoque(Produto lista[], int total, Categoria categorias[], int totalCat);
+void removerProduto(Produto lista[], int total);
 #endif
